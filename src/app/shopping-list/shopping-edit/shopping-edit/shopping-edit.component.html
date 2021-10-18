@@ -1,29 +1,34 @@
 <div class="row">
     <div class="col-12">
-        <form #editShoppingList="ngForm" (ngSubmit)="onAddIngredient()">
+        <form #editShoppingList="ngForm" (ngSubmit)="onSubmitIngredient()">
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
                     <input 
-                        [(ngModel)]="model.name"
+                        ngModel
                         type="text" 
                         class="form-control" 
-                        name="name">
+                        name="name"
+                        required>
+                    
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
                     <input 
-                        [(ngModel)]="model.amount"
+                        ngModel
                         type="number" 
                         name="amount" 
-                        class="form-control">
+                        class="form-control"
+                        required
+                        pattern="^[1-9]+[0-9]*$">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <button [disabled]="!editShoppingList.dirty" type="submit" class="btn btn-success mr-1">Add</button>
-                    <button type="button" class="btn btn-danger mr-1">Delete</button>
-                    <button type="button" class="btn btn-primary">Clear</button>
+                    <button [disabled]="!editShoppingList.valid" type="submit" class="btn btn-success mr-1">
+                        {{ editMode ? 'Update' : 'Add' }}</button>
+                    <button (click)="onDelete()" *ngIf="editMode" type="button" class="btn btn-danger mr-1">Delete</button>
+                    <button (click)="onClear()" type="button" class="btn btn-primary">Clear</button>
                 </div>
             </div>
         </form>

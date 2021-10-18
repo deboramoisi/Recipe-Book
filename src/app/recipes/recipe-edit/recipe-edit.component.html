@@ -1,1 +1,68 @@
-<p>recipe-edit works!</p>
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <button [disabled]="!recipeForm.valid" type="submit" class="btn btn-success form-control ml-2 mr-2 col-5">Save</button>
+                <button (click)="onCancel()" type="button" class="btn btn-danger form-control col-5">Cancel</button>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input formControlName="name" type="text" name="name" class="form-control" 
+                            [class.is-invalid]="recipeForm.get('name').touched && recipeForm.get('name').invalid">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="imagePath">Image URL</label>
+                        <input formControlName="imagePath" type="text" name="imagePath" class="form-control"
+                            [class.is-invalid]="recipeForm.get('imagePath').touched && recipeForm.get('imagePath').invalid"
+                            #imagePath>
+                    </div>
+               </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <img [src]="imagePath.value" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea formControlName="description" name="description" class="form-control" rows="6"
+                            [class.is-invalid]="recipeForm.get('description').touched && recipeForm.get('description').invalid"></textarea>
+                    </div>
+               </div>
+            </div>
+            <div class="row">
+                <div class="col-12" formArrayName="ingredients">
+                    <div class="row mb-2"
+                        *ngFor="let ingredientCtrl of controls; let i = index" 
+                        [formGroupName]="i">
+                        <div class="col-8">
+                            <input formControlName="name" type="text" class="form-control"
+                                [class.is-invalid]="ingredientCtrl.get('name').touched && ingredientCtrl.get('name').invalid">
+                        </div>
+                        <div class="col-2">
+                            <input formControlName="amount" type="number" class="form-control"
+                                [class.is-invalid]="ingredientCtrl.get('amount').touched && ingredientCtrl.get('amount').invalid">
+                        </div>
+                        <div class="col-2">
+                            <button (click)="onDeleteIngredient(i)" type="button" class="btn btn-danger form-control">X</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <button (click)="onAddIngredient()" type="button" class="btn btn-success">Add ingredient</button>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </form>
+    </div>
+</div>

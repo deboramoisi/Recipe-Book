@@ -11,7 +11,7 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list/recipe-li
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-list/recipe-item/recipe-item.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit/shopping-edit.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
@@ -35,6 +35,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     BsDropdownModule
   ],
