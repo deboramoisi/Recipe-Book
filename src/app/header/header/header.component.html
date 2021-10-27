@@ -4,19 +4,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a routerLink='/recipes' routerLinkActive="active" class="nav-link">Recipes</a>
+          <a *ngIf="isAuthenticated" routerLink='/recipes' routerLinkActive="active" class="nav-link">Recipes</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="!isAuthenticated" routerLink='/auth' routerLinkActive="active" class="nav-link">Authenticate</a>
         </li>
         <li class="nav-item">
           <a routerLink='/shopping-list' routerLinkActive="active" class="nav-link">Shopping List</a>
         </li>
+        <li class="nav-item" *ngIf="isAuthenticated" (click)="onLogout()">
+          <a class="nav-link">Logout</a>
+        </li>
 
-        <li class="nav-item dropdown navbar-light" dropdown>
+        <li *ngIf="isAuthenticated" class="nav-item dropdown navbar-light" id="manageDropdown" dropdown>
           <a class="nav-link dropdown-toggle" dropdownToggle role="menu" id="manage">
             Manage
           </a>
           <div class="dropdown-menu" *dropdownMenu aria-labelledby="manage">
-            <a class="dropdown-item">Save Data</a>
-            <a class="dropdown-item">Fetch Data</a>
+            <a class="dropdown-item" (click)="onSaveData()">Save Data</a>
+            <a class="dropdown-item" (click)="onFetchData()" >Fetch Data</a>
           </div>
         </li>
       </ul>

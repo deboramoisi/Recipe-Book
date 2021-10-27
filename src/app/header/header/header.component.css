@@ -1,3 +1,11 @@
 a {
     cursor: pointer;
 }
+
+#navbarSupportedContent {
+    display: flex;
+}
+
+#manageDropdown {
+    justify-content: center;
+}
