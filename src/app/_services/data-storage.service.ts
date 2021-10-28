@@ -1,10 +1,10 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { Recipe } from "../_models/recipe";
-import { RecipeService } from "./recipe.service";
 import { map, tap } from 'rxjs/operators';
 import { AuthService } from "./auth.service";
+import { Recipe } from "../recipes/recipe";
+import { RecipeService } from "../recipes/recipe.service";
 
 @Injectable({
     providedIn: "root"
